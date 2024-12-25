@@ -2,11 +2,16 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 
 
-class UserSerializer(serializers.ModelSerializer):
-    class meta:
-        model = User
-        fields = ["username", "password", "email"]
-        extra_kwargs = {"password": {"write_only": True}}
+class UserSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
+    username = serializers.CharField(max_length=150)
+    password = serializers.CharField(write_only=True, max_length=128)
+
+    def create(self, validated_data):
+        user = User.objects.create_user(
+            username=validated_data["username"], password=validated_data["password"]
+        )
+        return user
 
 
 class PatientSerializer(serializers.Serializer):

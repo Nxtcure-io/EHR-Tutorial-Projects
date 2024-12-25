@@ -12,10 +12,12 @@ from .formatter import ConvertToFHIR
 class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [AllowAny]
 
 
 class PatientListCreate(generics.ListCreateAPIView):
     serializer_class = PatientSerializer
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
         response = requests.get(FHIR_END_POINT_API)
@@ -54,6 +56,7 @@ class PatientListCreate(generics.ListCreateAPIView):
 
 class PatientDetailView(APIView):
     serializer_class = PatientSerializer
+    permission_classes = [IsAuthenticated]
     lookup_field = "id"
 
     def get(self, request, *args, **kwargs):
@@ -101,6 +104,8 @@ class PatientDetailView(APIView):
 
 
 class PatientSearchView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, *args, **kwargs):
         query_name = request.query_params.get("name", "")
         query_telecom = request.query_params.get("telecom", "")
