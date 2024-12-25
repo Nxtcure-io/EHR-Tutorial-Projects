@@ -6,4 +6,8 @@ urlpatterns = [
     path(
         "patients/<int:id>/", views.PatientDetailView.as_view(), name="patient_detail"
     ),
+    path(
+        "patients/<str:name>/", views.PatientDetailView.as_view(), name="patient_detail"
+    ),
+    path("patients/search/", views.PatientSearchView.as_view(), name="patient_search"),
 ]

@@ -35,12 +35,8 @@ class PatientListCreate(generics.ListCreateAPIView):
         response = requests.post(FHIR_END_POINT_API, json=fhir_patient_data)
 
         if response.status_code == 201:
-            fhir_patient_data = response.json()
-            patient_id = fhir_patient_data.get("id")
-            return Response(
-                {"id": patient_id, "message": "Patient created successfully"},
-                status=status.HTTP_201_CREATED,
-            )
+            return Response(response.json(), status=status.HTTP_201_CREATED)
+
         else:
             return Response(
                 {"error": "Failed to create resource"},
@@ -50,8 +46,8 @@ class PatientListCreate(generics.ListCreateAPIView):
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
-            self.perform_create(serializer)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            fhir_response = self.perform_create(serializer)
+            return fhir_response
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -61,7 +57,7 @@ class PatientDetailView(APIView):
     lookup_field = "id"
 
     def get(self, request, *args, **kwargs):
-        patient_id = kwargs["id"]
+        patient_id = kwargs["id"] if "id" in kwargs else kwargs["name"]
 
         response = requests.get(f"{FHIR_END_POINT_API}/{patient_id}")
 
@@ -75,7 +71,7 @@ class PatientDetailView(APIView):
 
     def put(self, request, *args, **kwargs):
 
-        patient_id = self.kwargs["id"]
+        patient_id = kwargs["id"] if "id" in kwargs else kwargs["name"]
         converter = ConvertToFHIR()
         fhir_patient_data = converter.patient_resource(request.data)
 
@@ -92,7 +88,7 @@ class PatientDetailView(APIView):
             )
 
     def delete(self, request, *args, **kwargs):
-        patient_id = self.kwargs["id"]
+        patient_id = kwargs["id"] if "id" in kwargs else kwargs["name"]
         response = requests.delete(f"{FHIR_END_POINT_API}/{patient_id}")
 
         if response.status_code == 204:
@@ -100,5 +96,25 @@ class PatientDetailView(APIView):
         else:
             return Response(
                 {"error": "Failed to delete patient from FHIR API"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+
+class PatientSearchView(APIView):
+    def get(self, request, *args, **kwargs):
+        query_name = request.query_params.get("name", "")
+        query_telecom = request.query_params.get("telecom", "")
+        fhir_search = f"{FHIR_END_POINT_API}?name:contains={query_name}"
+        if query_telecom:
+            fhir_search += f"&telecom:contains={query_telecom}"
+        response = requests.get(fhir_search)
+
+        if response.status_code == 200:
+            fhir_data = response.json()
+
+            return Response(fhir_data, status=status.HTTP_200_OK)
+        else:
+            return Response(
+                {"error": "Error fetching data from FHIR server"},
                 status=status.HTTP_400_BAD_REQUEST,
             )

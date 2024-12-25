@@ -17,4 +17,8 @@ class PatientSerializer(serializers.Serializer):
     city = serializers.CharField(max_length=200, required=True)
     state = serializers.CharField(max_length=200, required=True)
     country = serializers.CharField(max_length=200, required=True)
-    postalcode = serializers.IntegerField(max_value=9999999999, required=True)
+    postalcode = serializers.CharField(max_length=20, required=True)
+    phone_number = serializers.CharField(max_length=20, required=True)
+    phone_number_use = serializers.ChoiceField(
+        choices=["home", "work", "mobile", "other"], required=True
+    )
