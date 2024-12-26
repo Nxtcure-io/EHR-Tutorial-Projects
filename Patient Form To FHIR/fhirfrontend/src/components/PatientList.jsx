@@ -8,6 +8,10 @@ function PatientList({ patient, onDelete }) {
     navigate("/patient_detail", { state: { patient } });
   };
 
+  const updatePatient = () => {
+    navigate("/update_patient", { state: { patient } });
+  };
+
   const givenName =
     patient.name && patient.name[0] && patient.name[0].given
       ? patient.name[0].given[0]
@@ -34,10 +38,7 @@ function PatientList({ patient, onDelete }) {
       <p className="patient-diagnosis" onClick={patientDetail}>
         Diagnosis:
       </p>
-      <button
-        className="edit-patient"
-        onClick={() => navigate("/update_patient")}
-      >
+      <button className="edit-patient" onClick={updatePatient}>
         EDIT
       </button>
       <button className="delete-patient" onClick={() => onDelete(patient.id)}>

@@ -12,7 +12,6 @@ function Home() {
     getPatients();
   }, []);
 
-  // Fetch patients from the API
   const getPatients = () => {
     api
       .get("api/patients/")
@@ -28,7 +27,6 @@ function Home() {
       });
   };
 
-  // Delete a patient
   const deletePatient = (id) => {
     api
       .delete(`api/patients/${id}/`)
