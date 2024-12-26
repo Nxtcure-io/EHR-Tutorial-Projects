@@ -1,12 +1,18 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
+import SinglePatient from "../components/SinglePatientView";
 
 function PatientDetail() {
+  const location = useLocation();
+  const { patient } = location.state;
+
+  if (!patient) {
+    return <p>No Patient detail available!</p>;
+  }
+
   return (
     <div>
-      <h1>
-        Displays detail about a single patient using the single patient view
-        component!
-      </h1>
+      <SinglePatient patient={patient} />
     </div>
   );
 }

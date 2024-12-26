@@ -7,6 +7,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PatientDetail from "./pages/PatientDetail";
+import CreatePatient from "./pages/CreatePatient";
+import UpdatePatient from "./pages/UpdatePatient";
 
 function Logout() {
   localStorage.clear();
@@ -35,6 +37,22 @@ function App() {
           element={
             <ProtectedRoute>
               <PatientDetail />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/create_patient"
+          element={
+            <ProtectedRoute>
+              <CreatePatient />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/update_patient"
+          element={
+            <ProtectedRoute>
+              <UpdatePatient />
             </ProtectedRoute>
           }
         />
