@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PatientList from "../components/PatientList";
+import SearchBar from "../components/SearchBar";
 import api from "../api";
 
 function Home() {
@@ -53,6 +54,8 @@ function Home() {
           Create Patient
         </button>
       </div>
+      <SearchBar patients={patients} />
+      <div></div>
       <div>
         {loading ? (
           <p>Loading patients...</p>
