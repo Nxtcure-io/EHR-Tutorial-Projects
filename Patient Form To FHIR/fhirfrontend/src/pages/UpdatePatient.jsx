@@ -6,15 +6,9 @@ function UpdatePatient() {
   const location = useLocation;
   const { patient } = location.state;
 
-  // Write PUT Logic
-
   return (
     <div>
-      <PatientForm
-        data={patient}
-        method={"update"}
-        onSubmit={handleUpdatePatient}
-      />
+      <PatientForm data={patient} method={"update"} />
     </div>
   );
 }

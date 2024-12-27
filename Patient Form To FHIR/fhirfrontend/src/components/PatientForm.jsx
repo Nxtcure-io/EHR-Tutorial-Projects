@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
+import api from "../api";
 
-function PatientForm({ patient, method, onSubmit }) {
+function PatientForm({ patient, method }) {
+  const name = method === "update" ? "Update" : "Create";
+
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -42,13 +45,37 @@ function PatientForm({ patient, method, onSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData);
+    if (method === "update") {
+      // Write PUT logic
+      api
+        .put(`patients/${formData.id}/`, formData)
+        .then((res) => {
+          if (res.status === 200) {
+            alert("Patient deatils updated successfully!");
+          } else {
+            alert("Error updating patient details!");
+          }
+        })
+        .catch((err) => alert(`Update failed: ${err.message}`));
+    } else {
+      // Write POST logic
+      api
+        .post("api/patients/", formData)
+        .then((res) => {
+          if (res.status === 201) {
+            alert("Patient created successfully!");
+          } else {
+            alert("Error creating patient");
+          }
+        })
+        .catch((err) => alert(`Creation failed: ${err.message}`));
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>First Name</label>
+        <label>First Name: </label>
         <input
           type="text"
           name="first_name"
@@ -58,7 +85,7 @@ function PatientForm({ patient, method, onSubmit }) {
       </div>
 
       <div>
-        <label>Last Name</label>
+        <label>Last Name: </label>
         <input
           type="text"
           name="last_name"
@@ -68,7 +95,7 @@ function PatientForm({ patient, method, onSubmit }) {
       </div>
 
       <div>
-        <label>Gender</label>
+        <label>Gender: </label>
         <select name="gender" value={formData.gender} onChange={handleChange}>
           <option value="">Select Gender</option>
           <option value="male">Male</option>
@@ -78,9 +105,9 @@ function PatientForm({ patient, method, onSubmit }) {
       </div>
 
       <div>
-        <label>Birth Date</label>
+        <label>Birth Date (YYYY-MM-DD): </label>
         <input
-          type="date"
+          type="text"
           name="birth_date"
           value={formData.birth_date}
           onChange={handleChange}
@@ -88,7 +115,7 @@ function PatientForm({ patient, method, onSubmit }) {
       </div>
 
       <div>
-        <label>City</label>
+        <label>City: </label>
         <input
           type="text"
           name="city"
@@ -98,7 +125,7 @@ function PatientForm({ patient, method, onSubmit }) {
       </div>
 
       <div>
-        <label>State</label>
+        <label>State: </label>
         <input
           type="text"
           name="state"
@@ -108,7 +135,7 @@ function PatientForm({ patient, method, onSubmit }) {
       </div>
 
       <div>
-        <label>Country</label>
+        <label>Country: </label>
         <input
           type="text"
           name="country"
@@ -118,7 +145,7 @@ function PatientForm({ patient, method, onSubmit }) {
       </div>
 
       <div>
-        <label>Postal Code</label>
+        <label>Postal Code: </label>
         <input
           type="text"
           name="postalcode"
@@ -128,7 +155,7 @@ function PatientForm({ patient, method, onSubmit }) {
       </div>
 
       <div>
-        <label>Phone Number</label>
+        <label>Phone Number: </label>
         <input
           type="text"
           name="phone_number"
@@ -138,7 +165,7 @@ function PatientForm({ patient, method, onSubmit }) {
       </div>
 
       <div>
-        <label>Phone Number Use</label>
+        <label>Phone Number Use: </label>
         <select
           name="phone_number_use"
           value={formData.phone_number_use}
@@ -151,7 +178,7 @@ function PatientForm({ patient, method, onSubmit }) {
         </select>
       </div>
 
-      <button type="submit">Submit</button>
+      <button type="submit">{name}</button>
     </form>
   );
 }
