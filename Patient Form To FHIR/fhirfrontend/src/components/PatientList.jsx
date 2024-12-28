@@ -23,22 +23,34 @@ function PatientList({ patient, onDelete }) {
       : patient.telecom && patient.telecom[1] && patient.telecom[1].value
       ? patient.telecom[1].value
       : "N/A";
+  const nameStyle = {
+    cursor: "pointer",
+    fontWeight: "bold",
+  };
 
   return (
     <div className="patient-list-container">
-      <p className="patient-id" onClick={patientDetail}>
+      <p className="patient-id" onClick={patientDetail} style={nameStyle}>
         ID: {patient.id}
       </p>
-      <p className="patient-name" onClick={patientDetail}>
+      <p className="patient-name" onClick={patientDetail} style={nameStyle}>
         Given Name: {givenName}
       </p>
-      <p className="patient-number" onClick={patientDetail}>
+      <p className="patient-number" onClick={patientDetail} style={nameStyle}>
         Telecom Number: {telecomNumber}
       </p>
-      <p className="patient-diagnosis" onClick={patientDetail}>
+      <p
+        className="patient-diagnosis"
+        onClick={patientDetail}
+        style={nameStyle}
+      >
         Diagnosis:
       </p>
-      <button className="edit-patient" onClick={updatePatient}>
+      <button
+        className="edit-patient"
+        onClick={updatePatient}
+        style={nameStyle}
+      >
         EDIT
       </button>
       <button className="delete-patient" onClick={() => onDelete(patient.id)}>
