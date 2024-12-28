@@ -1,0 +1,53 @@
+/* Container for the entire entry page */
+.entry-page-container {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+}
+
+/* Styling for the button containers */
+.button-container {
+  margin: 10px 0; /* Adds space between buttons */
+}
+
+/* Login button style */
+.login-button,
+.register-button {
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 200px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Login button background color */
+.login-button {
+  background-color: #007bff;
+}
+
+/* Register button background color */
+.register-button {
+  background-color: #28a745;
+}
+
+/* Hover effect for both buttons */
+.login-button:hover,
+.register-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Disabled state for the buttons (if needed) */
+.login-button:disabled,
+.register-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
