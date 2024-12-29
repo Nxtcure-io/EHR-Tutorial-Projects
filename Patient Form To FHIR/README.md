@@ -22,7 +22,6 @@ This project integrates a React frontend with a Django backend to manage patient
 /my-fhir-project
   ├── /frontend (React app)
   ├── /backend (Django app)
-  └── /formatter.py (Handles JSON formatting)
 ```
 
 ## Setup Instructions
@@ -85,16 +84,19 @@ This project integrates a React frontend with a Django backend to manage patient
 
 - Django
 - fhir.resources
-- pandas
-- bcrypt
-- rich
-- tabulate
-- validators
+- Django
+- django-cors-headers
+- djangorestframework
+- djangorestframework-simplejwt
+- fhir.resources
 
 ### Frontend (React)
 
 - axios
+- jwt-decode
+- react-dom
 - react-router-dom
+- react
 
 ## How to Use
 
@@ -104,13 +106,3 @@ This project integrates a React frontend with a Django backend to manage patient
    - View the list of patients created and manage the data.
 3. **FHIR Integration**:
    - When creating or updating a patient, the data is sent to the Django backend, which posts it to the FHIR server using the `FHIR API`.
-
-## Future Enhancements
-
-- Implement additional FHIR resource types.
-- Add more complex patient management features, such as appointment scheduling or medical history tracking.
-- Improve frontend with better UI/UX.
-
-## License
-
-This project is licensed under the MIT License.
