@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
+import "../styles/PatientForm.css";
 
 function PatientForm({ patient, method }) {
   const name = method === "update" ? "Update" : "Create";
@@ -23,14 +24,15 @@ function PatientForm({ patient, method }) {
   useEffect(() => {
     if (method === "update" && patient) {
       setFormData({
+        id: patient.id,
         first_name: patient?.name?.[0]?.given?.[0] || "",
         last_name: patient?.name?.[0]?.family || "",
         gender: patient?.gender || "",
         birth_date: patient?.birthDate || "",
-        city: patient.address[0].city || "",
-        state: patient.address[0].state || "",
-        country: patient.address[0].country || "",
-        postalcode: patient.address[0].postalCode || "",
+        city: patient.address?.[0]?.city || "",
+        state: patient.address?.[0]?.state || "",
+        country: patient.address?.[0]?.country || "",
+        postalcode: patient.address?.[0]?.postalCode || "",
         phone_number:
           patient?.telecom?.[0]?.value || patient?.telecom?.[1]?.value || "",
         phone_number_use: patient?.telecom?.[0]?.use || "",
@@ -51,7 +53,7 @@ function PatientForm({ patient, method }) {
     if (method === "update") {
       // Write PUT logic
       api
-        .put(`patients/${formData.id}/`, formData)
+        .put(`api/patients/${formData.id}/`, formData)
         .then((res) => {
           if (res.status === 200) {
             alert("Patient deatils updated successfully!");
@@ -78,30 +80,41 @@ function PatientForm({ patient, method }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>First Name: </label>
+    <form className="patient-form" onSubmit={handleSubmit}>
+      <h2 className="form-title">{name} Patient</h2>
+      <div className="form-group">
+        <label htmlFor="first_name">First Name:</label>
         <input
+          id="first_name"
           type="text"
           name="first_name"
           value={formData.first_name}
           onChange={handleChange}
+          required
         />
       </div>
 
-      <div>
-        <label>Last Name: </label>
+      <div className="form-group">
+        <label htmlFor="last_name">Last Name:</label>
         <input
+          id="last_name"
           type="text"
           name="last_name"
           value={formData.last_name}
           onChange={handleChange}
+          required
         />
       </div>
 
-      <div>
-        <label>Gender: </label>
-        <select name="gender" value={formData.gender} onChange={handleChange}>
+      <div className="form-group">
+        <label htmlFor="gender">Gender:</label>
+        <select
+          id="gender"
+          name="gender"
+          value={formData.gender}
+          onChange={handleChange}
+          required
+        >
           <option value="">Select Gender</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
@@ -109,72 +122,86 @@ function PatientForm({ patient, method }) {
         </select>
       </div>
 
-      <div>
-        <label>Birth Date (YYYY-MM-DD): </label>
+      <div className="form-group">
+        <label htmlFor="birth_date">Birth Date (YYYY-MM-DD):</label>
         <input
+          id="birth_date"
           type="text"
           name="birth_date"
           value={formData.birth_date}
           onChange={handleChange}
+          required
         />
       </div>
 
-      <div>
-        <label>City: </label>
+      <div className="form-group">
+        <label htmlFor="city">City:</label>
         <input
+          id="city"
           type="text"
           name="city"
           value={formData.city}
           onChange={handleChange}
+          required
         />
       </div>
 
-      <div>
-        <label>State: </label>
+      <div className="form-group">
+        <label htmlFor="state">State:</label>
         <input
+          id="state"
           type="text"
           name="state"
           value={formData.state}
           onChange={handleChange}
+          required
         />
       </div>
 
-      <div>
-        <label>Country: </label>
+      <div className="form-group">
+        <label htmlFor="country">Country:</label>
         <input
+          id="country"
           type="text"
           name="country"
           value={formData.country}
           onChange={handleChange}
+          required
         />
       </div>
 
-      <div>
-        <label>Postal Code: </label>
+      <div className="form-group">
+        <label htmlFor="postalcode">Postal Code:</label>
         <input
+          id="postalcode"
           type="text"
           name="postalcode"
           value={formData.postalcode}
           onChange={handleChange}
+          required
         />
       </div>
 
-      <div>
-        <label>Phone Number: </label>
+      <div className="form-group">
+        <label htmlFor="phone_number">Phone Number:</label>
         <input
+          id="phone_number"
           type="text"
           name="phone_number"
           value={formData.phone_number}
           onChange={handleChange}
+          required
         />
       </div>
 
-      <div>
-        <label>Phone Number Use: </label>
+      <div className="form-group">
+        <label htmlFor="phone_number_use">Phone Number Use:</label>
         <select
+          id="phone_number_use"
           name="phone_number_use"
           value={formData.phone_number_use}
           onChange={handleChange}
+          required
         >
           <option value="">Select Use</option>
           <option value="home">Home</option>
@@ -183,7 +210,9 @@ function PatientForm({ patient, method }) {
         </select>
       </div>
 
-      <button type="submit">{name}</button>
+      <button type="submit" className="form-submit-btn">
+        {name}
+      </button>
     </form>
   );
 }

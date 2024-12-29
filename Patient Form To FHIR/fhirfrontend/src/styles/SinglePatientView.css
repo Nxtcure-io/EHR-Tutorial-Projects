@@ -1,0 +1,85 @@
+/* Container for Patient View */
+.patient-view-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title */
+  .patient-title {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333333;
+  }
+  
+  /* Patient Details */
+  .patient-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Individual Detail Row */
+  .detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border: 1px solid #dddddd;
+  }
+  
+  /* Label and Value */
+  .detail-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #555555;
+  }
+  
+  .detail-value {
+    font-size: 16px;
+    color: #333333;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .patient-view-container {
+      padding: 15px;
+    }
+  
+    .patient-title {
+      font-size: 24px;
+    }
+  
+    .detail-label,
+    .detail-value {
+      font-size: 14px;
+    }
+  }
+
+  .discharge-patient {
+    background-color: #f44336; /* Red background for discharge */
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .discharge-patient:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+  }
+  
+  .discharge-patient:focus {
+    outline: none;
+  }

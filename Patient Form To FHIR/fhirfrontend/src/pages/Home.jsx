@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PatientList from "../components/PatientList";
 import SearchBar from "../components/SearchBar";
+import "../styles/CreatePatient.css";
 import api from "../api";
 
 function Home() {
@@ -46,16 +47,9 @@ function Home() {
 
   return (
     <div>
-      <div>
-        <button
-          className="create-patient-btn"
-          onClick={() => navigate("/create_patient")}
-        >
-          Create Patient
-        </button>
-      </div>
       <SearchBar patients={patients} />
       <div></div>
+      <br></br>
       <div>
         {loading ? (
           <p>Loading patients...</p>

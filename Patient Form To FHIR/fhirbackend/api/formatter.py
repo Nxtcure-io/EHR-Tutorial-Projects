@@ -37,4 +37,4 @@ class ConvertToFHIR:
             address=[address] if address else None,
         )
 
-        return fhir_patient.dict()
+        return dict(fhir_patient.dict())

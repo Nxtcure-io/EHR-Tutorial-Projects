@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles/PatientList.css";
 
 function PatientList({ patient, onDelete }) {
   const navigate = useNavigate();
@@ -16,6 +17,11 @@ function PatientList({ patient, onDelete }) {
     patient.name && patient.name[0] && patient.name[0].given
       ? patient.name[0].given[0]
       : "N/A";
+
+  const gender = patient?.gender
+    ? patient.gender.charAt(0).toUpperCase() +
+      patient.gender.slice(1).toLowerCase()
+    : "N/A";
 
   const telecomNumber =
     patient.telecom && patient.telecom[0] && patient.telecom[0].value
@@ -35,6 +41,9 @@ function PatientList({ patient, onDelete }) {
       </p>
       <p className="patient-name" onClick={patientDetail} style={nameStyle}>
         Given Name: {givenName}
+      </p>
+      <p className="patient-gender" onClick={patientDetail} style={nameStyle}>
+        Gender: {gender}
       </p>
       <p className="patient-number" onClick={patientDetail} style={nameStyle}>
         Telecom Number: {telecomNumber}

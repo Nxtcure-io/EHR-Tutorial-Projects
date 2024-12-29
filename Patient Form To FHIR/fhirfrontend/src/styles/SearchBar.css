@@ -1,0 +1,70 @@
+/* Search Bar Styling */
+.patient-search-input {
+    width: 100%; /* Full width for better usability */
+    padding: 12px 16px; /* Comfortable padding */
+    font-size: 16px; /* Readable font size */
+    border: 1px solid #dee2e6; /* Subtle border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth hover effects */
+  }
+  
+  .patient-search-input:focus {
+    border-color: #007bff; /* Blue border on focus */
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3); /* Highlighted shadow */
+    outline: none; /* Remove default outline */
+  }
+  
+  /* Dropdown Styling */
+  .patient-search-dropdown {
+    list-style: none; /* Remove bullet points */
+    padding: 0;
+    margin-top: 8px; /* Space between input and dropdown */
+    border: 1px solid #dee2e6; /* Match input border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    max-height: 200px; /* Limit height */
+    overflow-y: auto; /* Enable scrolling for long lists */
+    background-color: white; /* Match input background */
+    z-index: 10; /* Ensure it appears above other elements */
+    position: absolute; /* Position relative to parent */
+    width: 100%; /* Match input width */
+  }
+  
+  /* Dropdown Item Styling */
+  .patient-search-dropdown li {
+    padding: 10px 16px; /* Comfortable padding */
+    cursor: pointer; /* Pointer for interactivity */
+    font-size: 14px; /* Smaller font size */
+    transition: background-color 0.2s; /* Smooth hover effect */
+  }
+  
+  .patient-search-dropdown li:hover {
+    background-color: #f8f9fa; /* Light gray on hover */
+  }
+  
+  .patient-search-dropdown li span {
+    font-weight: bold; /* Emphasize name */
+    color: #495057; /* Dark gray text */
+  }
+  
+  .patient-search-dropdown li strong {
+    font-weight: bold; /* Emphasize labels */
+    color: #6c757d; /* Subtle gray for labels */
+  }
+
+  /* Dashboard Header */
+.dashboard-header {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    gap: 20px; /* Add space between button and search bar */
+    padding: 20px; /* Padding around the entire header */
+    background-color: #f8f9fa; /* Light gray background */
+    border-bottom: 1px solid #dee2e6; /* Subtle bottom border */
+  }
+  
+  /* Search Bar Container */
+  .patient-search-container {
+    position: relative; /* For dropdown positioning */
+    padding: 10px 0; /* Add padding around the search bar */
+  }

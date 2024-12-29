@@ -1,0 +1,25 @@
+/* Create Patient Button Styling */
+.create-patient-btn {
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text */
+    font-size: 16px; /* Slightly larger font for emphasis */
+    font-weight: bold; /* Bold text */
+    padding: 12px 24px; /* Padding for a button-like feel */
+    border: none; /* Remove default border */
+    border-radius: 8px; /* Rounded corners for a modern look */
+    cursor: pointer; /* Pointer cursor for interactivity */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth hover effects */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  .create-patient-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+  }
+  
+  .create-patient-btn:active {
+    background-color: #004085; /* Even darker blue on click */
+    transform: translateY(0); /* Reset lift effect */
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Reduced shadow on click */
+  }
