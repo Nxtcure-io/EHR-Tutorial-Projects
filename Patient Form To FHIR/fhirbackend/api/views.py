@@ -1,4 +1,6 @@
 import requests
+import json
+from datetime import date
 from django.contrib.auth.models import User
 from rest_framework import generics, status
 from rest_framework.response import Response
@@ -34,11 +36,15 @@ class PatientListCreate(generics.ListCreateAPIView):
         converter = ConvertToFHIR()
         fhir_patient_data = converter.patient_resource(serializer.validated_data)
 
+        # Convert date fields to string (ISO format)
+        for key, value in fhir_patient_data.items():
+            if isinstance(value, date):
+                fhir_patient_data[key] = value.isoformat()
+
         response = requests.post(FHIR_END_POINT_API, json=fhir_patient_data)
 
         if response.status_code == 201:
             return Response(response.json(), status=status.HTTP_201_CREATED)
-
         else:
             return Response(
                 {"error": "Failed to create resource"},
@@ -60,7 +66,7 @@ class PatientDetailView(APIView):
     lookup_field = "id"
 
     def get(self, request, *args, **kwargs):
-        patient_id = kwargs["id"] if "id" in kwargs else kwargs["name"]
+        patient_id = kwargs.get("id")
 
         response = requests.get(f"{FHIR_END_POINT_API}/{patient_id}")
 
@@ -74,9 +80,14 @@ class PatientDetailView(APIView):
 
     def put(self, request, *args, **kwargs):
 
-        patient_id = kwargs["id"] if "id" in kwargs else kwargs["name"]
+        patient_id = kwargs.get("id")
         converter = ConvertToFHIR()
         fhir_patient_data = converter.patient_resource(request.data)
+
+        # Convert date fields to string (ISO format)
+        for key, value in fhir_patient_data.items():
+            if isinstance(value, date):
+                fhir_patient_data[key] = value.isoformat()
 
         response = requests.put(
             f"{FHIR_END_POINT_API}/{patient_id}", json=fhir_patient_data
@@ -92,7 +103,12 @@ class PatientDetailView(APIView):
             )
 
     def delete(self, request, *args, **kwargs):
-        patient_id = kwargs["id"] if "id" in kwargs else kwargs["name"]
+        patient_id = kwargs.get("id")
+        if not patient_id:
+            return Response(
+                {"error": "Patient ID is required"}, status=status.HTTP_400_BAD_REQUEST
+            )
+
         response = requests.delete(f"{FHIR_END_POINT_API}/{patient_id}")
 
         if response.status_code == 204:
