@@ -36,5 +36,5 @@ class ConvertToFHIR:
             birthDate=validated_data["birth_date"],
             address=[address] if address else None,
         )
-
+        print(name, telecom_construct)
         return dict(fhir_patient.dict())

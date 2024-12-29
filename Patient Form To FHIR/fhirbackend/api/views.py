@@ -33,7 +33,6 @@ class PatientListCreate(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         converter = ConvertToFHIR()
         fhir_patient_data = converter.patient_resource(serializer.validated_data)
-        print(fhir_patient_data)
 
         response = requests.post(FHIR_END_POINT_API, json=fhir_patient_data)
 
@@ -78,7 +77,6 @@ class PatientDetailView(APIView):
         patient_id = kwargs["id"] if "id" in kwargs else kwargs["name"]
         converter = ConvertToFHIR()
         fhir_patient_data = converter.patient_resource(request.data)
-        print(fhir_patient_data)
 
         response = requests.put(
             f"{FHIR_END_POINT_API}/{patient_id}", json=fhir_patient_data
