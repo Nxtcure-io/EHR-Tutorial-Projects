@@ -92,7 +92,6 @@ class PatientDetailView(APIView):
         response = requests.put(
             f"{FHIR_END_POINT_API}/{patient_id}", json=fhir_patient_data
         )
-        print(f"{FHIR_END_POINT_API}/{patient_id}")
 
         if response.status_code == 200:
             return Response(response.json())

@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     path("patients/", views.PatientListCreate.as_view(), name="patients"),
     re_path(
-        r"^patients/(?P<patient_id>[\w-]+)/$",
+        r"^patients/(?P<id>[\w-]+)/$",
         views.PatientDetailView.as_view(),
         name="patient_detail",
     ),
