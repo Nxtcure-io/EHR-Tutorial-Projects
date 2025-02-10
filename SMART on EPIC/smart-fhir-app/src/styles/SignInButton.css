@@ -1,0 +1,21 @@
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.sign-in-button {
+    background-color: #0078D4;
+    color: white;
+    font-size: 18px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.sign-in-button:hover {
+    background-color: #005fa3;
+}
