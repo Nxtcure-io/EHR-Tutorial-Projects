@@ -1,51 +1,40 @@
 import { useState, useEffect } from 'react'
 import fetchSmartConfig from './config/smartConfig';
 import SignInButton from './components/SignInButton';
+import TokenExchange from "./components/TokenExchange";
+import PatientInfo from "./components/PatientInfo";
+import handleSignIn from "./auth/Auth";
 import './App.css'
 
 function App() {
     const [config, setConfig] = useState(null);
+    const [authCode, setAuthCode] = useState(null);
+    const [token, setToken] = useState(null);
+
+    const FHIR_BASE_URL = import.meta.env.VITE_FHIR_BASE_URL;
 
     useEffect(() => {
         const loadConfig = async () => {
             const fetchedConfig = await fetchSmartConfig();
-            if(fetchedConfig){
-                setConfig(fetchedConfig);
-            }
+            if (fetchedConfig) setConfig(fetchedConfig);
         };
         loadConfig();
-    }, []);
 
-    const handleSignIn = () => {
-        if(!config){
-            console.error('SMART config is not loaded');
-            return;
+        // Get authorization code from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get("code");
+        if (code) {
+            setAuthCode(code);
         }
-        // Get the values for the Auth URL construction
-        const client_id = import.meta.env.VITE_CLIENT_ID;
-        const response_type = 'code';
-        const redirect_uri = import.meta.env.VITE_REDIRECT_URI;
-        const scope = "launch openid profile fhirUser";
-        const state = Math.random().toString(36).substring(7);
-
-        // Construct OAuth 2.0 Authorization URL
-        const authURL = `${config.authorizationEndpoint}?
-        scope=${encodeURIComponent(scope)}&
-        response_type=${response_type}&
-        redirect_uri=${encodeURIComponent(redirect_uri)}&
-        client_id=${client_id}&
-        state=${state}`
-
-        // Redirect user to Epic's authorization endpoint
-        window.location.href = authURL;
-
-    };
+    }, []);
 
     return (
         <div>
-            <SignInButton onClick={handleSignIn}/>
+            <SignInButton onClick={() => handleSignIn(config)} />
+            {authCode && <TokenExchange authCode={authCode} config={config} onTokenReceived={setToken} />}
+            {token && <PatientInfo accessToken={token} fhirBaseUrl={FHIR_BASE_URL} />}
         </div>
     );
-  
 }
-export default App
+
+export default App;
