@@ -1,9 +1,10 @@
 // PatientPage.jsx
 import { useState, useEffect } from "react";
-import { getPatientDetails, getPatientMedications, getPatientObservation, getPatientVitals } from "../api/fhirQueryFunctions";
+import { getPatientDetails, getPatientMedications, getPatientObservation } from "../api/fhirQueryFunctions";
 import Navbar from "../components/NavBar";
 import PatientDetailsList from "../components/PatientDetails";
 
+// The Patient info page
 function PatientPage() {
     const [details, setDetails] = useState(null);
 
@@ -14,6 +15,8 @@ function PatientPage() {
     
             const medications = await getPatientMedications();
             const observations = await getPatientObservation();
+
+            // Debug statement for the other details
             console.log('medication:', medications)
             console.log('observation:', observations)
             

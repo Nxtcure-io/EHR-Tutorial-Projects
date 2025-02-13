@@ -3,6 +3,8 @@ import { getToken } from "../auth/getToken";
 import { useNavigate } from "react-router-dom";
 import { setToken } from "../config/config";
 
+
+// Function handles the oAuth redirect back
 function CallBack() {
     const navigate = useNavigate();
 
