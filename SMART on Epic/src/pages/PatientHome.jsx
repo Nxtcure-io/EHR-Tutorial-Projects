@@ -1,8 +1,8 @@
 // PatientPage.jsx
 import { useState, useEffect } from "react";
-import { getPatientDetails, getPatientMedications } from "../api/fhirQueryFunctions";
-import PatientDetails from '../components/PatientDetails';
+import { getPatientDetails, getPatientMedications, getPatientObservation, getPatientVitals } from "../api/fhirQueryFunctions";
 import Navbar from "../components/NavBar";
+import PatientDetailsList from "../components/PatientDetails";
 
 function PatientPage() {
     const [details, setDetails] = useState(null);
@@ -10,9 +10,13 @@ function PatientPage() {
     useEffect(() => {
         const fetchDetails = async () => {
             const patient = await getPatientDetails();
-            const medications = await getPatientMedications();
-            console.log(medications)
             setDetails(patient);
+    
+            const medications = await getPatientMedications();
+            const observations = await getPatientObservation();
+            console.log('medication:', medications)
+            console.log('observation:', observations)
+            
         };
         fetchDetails();
     }, []); 
@@ -20,7 +24,7 @@ function PatientPage() {
     return (
         <div>
             <Navbar/>
-            <PatientDetails details={details} />
+            <PatientDetailsList details={details} />
         </div>
     );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/PatientDetails.css"
 
-function PatientDetails({ details }) {
+function PatientDetailsList({ details }) {
     if (!details) return <p>Loading patient details...</p>;
 
     // Extract relevant data
@@ -23,4 +23,4 @@ function PatientDetails({ details }) {
     );
 }
 
-export default PatientDetails;
+export default PatientDetailsList;
