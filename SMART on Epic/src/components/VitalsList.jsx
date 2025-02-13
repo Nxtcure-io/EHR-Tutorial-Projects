@@ -1,3 +1,7 @@
+import React from "react";
+
+
+// Render the vitals list
 function VitalsList({details}){
     if (!details) return <p>Loading patient vitals...</p>;
 

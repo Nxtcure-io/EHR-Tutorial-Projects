@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/PatientDetails.css"
 
+// Render the patient detail list
 function PatientDetailsList({ details }) {
     if (!details) return <p>Loading patient details...</p>;
 
