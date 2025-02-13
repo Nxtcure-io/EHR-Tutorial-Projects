@@ -8,14 +8,16 @@ export const CONFIG = {
     TOKEN_ENDPOINT: '',
     CLIENT_ID: 'a56411ee-67d8-43be-a181-1ef625da3c64',
     REDIRECT_URI: 'http://localhost:5173/callback',
-    FHIR_BASE_URL: 'https://fhir.epic.com/interconnect-fhir-oauth/api/FHIR/R4/'
+    FHIR_BASE_URL: 'https://fhir.epic.com/interconnect-fhir-oauth/api/FHIR/R4'
 };
 
 // Function to update multiple values at once
 export function setWellKnown(authorization, token, issuer) {
     CONFIG.AUTHORIZATION_ENDPOINT = authorization;
     CONFIG.TOKEN_ENDPOINT = token;
+    localStorage.setItem('token_endpoint', token);
     CONFIG.ISSUER = issuer;
+    localStorage.setItem('issuer', issuer);
 }
 
 export function setToken(access){

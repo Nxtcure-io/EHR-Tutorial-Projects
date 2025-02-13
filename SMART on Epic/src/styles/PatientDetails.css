@@ -1,0 +1,35 @@
+/* PatientDetails.css */
+.patient-card {
+    background: #ffffff;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+.patient-card h2 {
+    text-align: center;
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+}
+
+.patient-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.patient-info p {
+    font-size: 16px;
+    color: #444;
+    margin: 0;
+}
+
+.patient-info strong {
+    color: #007bff;
+}

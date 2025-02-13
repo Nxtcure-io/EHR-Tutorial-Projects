@@ -13,10 +13,11 @@ function CallBack() {
                 if (tokenData) {
                     // Save the access token
                     localStorage.setItem("access_token", tokenData.access_token);
+                    localStorage.setItem("patient_id", tokenData.patient);
                     // Set the access_token in the config
                     setToken(tokenData.access_token)
 
-                    navigate("/patient-details"); // Redirect if successful
+                    navigate("/patient-home"); // Redirect if successful
                 }
             } catch (error) {
                 console.error("Token retrieval failed:", error);

@@ -5,12 +5,16 @@ import axios from "axios";
 export async function getToken(){
     try {
         // Get the code from the redirect URL
+        const token_endpoint = localStorage.getItem('token_endpoint')
         const params = new URLSearchParams(window.location.search);
         const code = params.get('code');
-        console.log("Authorization Code:", code);
 
         if (!code) {
             throw new Error("Authorization code not found in URL.");
+        }
+
+        if(!token_endpoint){
+            throw new Error("Token endpoint not available.")
         }
 
         // Get stored configuration variables
@@ -25,17 +29,15 @@ export async function getToken(){
             code_verifier: localStorage.getItem("code_verifier"),
         });
 
-        console.log(config.TOKEN_ENDPOINT)
-
         // Make the token request
-        const res = await axios.post(config.TOKEN_ENDPOINT, body, {
+        const res = await axios.post(token_endpoint, body, {
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
             }
         });
 
         // Log the response data
-        console.log("Token Response:", res.data);
+        console.log("Token Response:", res);
         return res.data; // Return the response for further use
     } catch (error) {
         console.error("Error fetching token:", error.response ? error.response.data : error.message);

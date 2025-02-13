@@ -13,7 +13,7 @@ export function authURL(authorization, redirect, client_id, code_challenge, base
     // aud=[audience]
 
     const authURL = `${authorization}?` +
-        `scope=launch&` +
+        `scope=[launch fhirUser openid profile]&` +
         `response_type=code&` +
         `redirect_uri=${encodeURIComponent(redirect)}&` +
         `client_id=${encodeURIComponent(client_id)}&` +
