@@ -1,7 +1,7 @@
 // PatientPage.jsx
 import { useState, useEffect } from "react";
-import { getPatientDetails } from "../api/getPatientDetails";
-import PatientDetails from "../components/PatientDetails";
+import { getPatientDetails, getPatientMedications } from "../api/fhirQueryFunctions";
+import PatientDetails from '../components/PatientDetails';
 import Navbar from "../components/NavBar";
 
 function PatientPage() {
@@ -10,6 +10,8 @@ function PatientPage() {
     useEffect(() => {
         const fetchDetails = async () => {
             const patient = await getPatientDetails();
+            const medications = await getPatientMedications();
+            console.log(medications)
             setDetails(patient);
         };
         fetchDetails();
