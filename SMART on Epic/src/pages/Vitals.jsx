@@ -10,7 +10,7 @@ function Vitals() {
     useEffect(() => {
         const fetchDetails = async () => {
             const vitals = await getPatientVitals();
-            setDetails(JSON.stringify(vitals));
+            setDetails(vitals);
             
         };
         fetchDetails();

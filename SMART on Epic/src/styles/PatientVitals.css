@@ -1,0 +1,76 @@
+/* Main container for the vitals list */
+.vitals-list {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+/* Header style */
+.vitals-list h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Table styling */
+.vitals-list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.vitals-list th,
+.vitals-list td {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 1rem;
+    color: #555;
+}
+
+.vitals-list th {
+    background-color: #4CAF50;
+    color: white;
+    text-transform: uppercase;
+}
+
+.vitals-list td {
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+/* Row hover effect */
+.vitals-list tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Odd rows with slight grey background */
+.vitals-list tr:nth-child(odd) td {
+    background-color: #f9f9f9;
+}
+
+/* Date cell should have a distinct background and span across rows */
+.vitals-list td[rowspan] {
+    background-color: #e6f7e6;
+    font-weight: bold;
+}
+
+/* Styling for individual vital sign rows */
+.vitals-list td {
+    border-left: 1px solid #ddd;
+}
+
+/* Make the last column in each row align well */
+.vitals-list td:last-child {
+    border-right: 1px solid #ddd;
+}
+
+/* Styling for no results message */
+.vitals-list p {
+    font-size: 1.2rem;
+    color: #888;
+    text-align: center;
+    margin-top: 20px;
+}

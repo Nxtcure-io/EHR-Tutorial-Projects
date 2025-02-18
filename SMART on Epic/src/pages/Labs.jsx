@@ -1,11 +1,26 @@
+import { useState, useEffect } from 'react';
+import { getPatientObservation } from '../api/fhirQueryFunctions';
+import PatientLabList from '../components/LabDetails';
 import Navbar from '../components/NavBar'
 
 function Labs(){
-    return(
+
+    const [details, setDetails] = useState(null);
+
+    useEffect(() => {
+        const fetchDetails = async () => {
+            const labs = await getPatientObservation();
+            setDetails(labs);
+            
+        };
+        fetchDetails();
+    }, []); 
+
+    return (
         <div>
-            <Navbar /> 
-            <h1>Labs Page</h1>
+            <Navbar/>
+            <PatientLabList details={details} />
         </div>
-    )
+    );
 }
-export default Labs
+export default Labs;

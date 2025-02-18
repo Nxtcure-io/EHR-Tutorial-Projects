@@ -37,7 +37,7 @@ export async function getPatientMedications() {
     }
 }
 
-// Get observation info about Patients from FHIR
+// Get lab observation info about Patients from FHIR
 export async function getPatientObservation() {
     const access_token = localStorage.getItem("access_token");
     const patient_id = localStorage.getItem("patient_id");
@@ -56,7 +56,7 @@ export async function getPatientObservation() {
         });
         return res.data;
     } catch (error) {
-        console.error("Error fetching observation details:", error.response ? error.response.data : error.message);
+        console.error("Error fetching lab observation details:", error.response ? error.response.data : error.message);
     }
 }
 
@@ -78,6 +78,6 @@ export async function getPatientVitals() {
         });
         return res.data;
     } catch (error) {
-        console.error("Error fetching observation details:", error.response ? error.response.data : error.message);
+        console.error("Error fetching vitals details:", error.response ? error.response.data : error.message);
     }
 }

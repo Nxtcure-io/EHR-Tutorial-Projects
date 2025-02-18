@@ -1,0 +1,70 @@
+/* Container for the Lab Results Section */
+.patient-lab-results {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    margin-top: 20px;
+    max-width: 800px;
+}
+
+/* Header Styling */
+.patient-lab-results h2 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Card Container Styling */
+.patient-lab-results .lab-card {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Card hover effect */
+.patient-lab-results .lab-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for each label in the result */
+.patient-lab-results p {
+    font-size: 16px;
+    color: #555;
+    margin: 8px 0;
+}
+
+/* Bold labels for the test name, result, date, and encounter */
+.patient-lab-results strong {
+    color: #333;
+}
+
+/* Horizontal divider in each card */
+.patient-lab-results hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Message styling for 'No lab results found' */
+.patient-lab-results .no-results {
+    font-size: 18px;
+    color: #888;
+    text-align: center;
+}
+
+/* Loading and error message styles */
+.patient-lab-results .loading, .patient-lab-results .error {
+    text-align: center;
+    color: #888;
+    font-size: 18px;
+    font-style: italic;
+}
