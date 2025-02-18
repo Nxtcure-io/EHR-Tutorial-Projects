@@ -12,7 +12,6 @@ function Medications(){
             const fetchDetails = async () => {
                 const medications = await getPatientMedications();
                 setDetails(medications);
-                console.log(medications)
                 
             };
             fetchDetails();
