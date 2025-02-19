@@ -36,8 +36,6 @@ export async function getToken(){
             }
         });
 
-        // Log the response data
-        console.log("Token Response:", res);
         return res.data; // Return the response for further use
     } catch (error) {
         console.error("Error fetching token:", error.response ? error.response.data : error.message);
