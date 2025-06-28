@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import getWellKnown from '../auth/wellKnown';
 import { getVariables } from '../config/config';
-import { getChallenge } from '../auth/pcke';
+import { getChallenge } from '../auth/pkce';
 import { setChallenge } from "../config/config";
 import { authURL } from '../auth/authorization';
 import SignIn from '../components/SignInButton';
