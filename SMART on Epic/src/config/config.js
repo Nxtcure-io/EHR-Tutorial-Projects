@@ -1,4 +1,5 @@
 // List of all endpoints
+//MEDLINKS_CLIENT_ID: 'a56411ee-67d8-43be-a181-1ef625da3c64',
 export const CONFIG = {
     ISSUER: '',
     ACCESS_TOKEN: '',
@@ -6,7 +7,7 @@ export const CONFIG = {
     CODE_VERIFIER: '',
     AUTHORIZATION_ENDPOINT: '',
     TOKEN_ENDPOINT: '',
-    CLIENT_ID: 'a56411ee-67d8-43be-a181-1ef625da3c64',
+    CLIENT_ID: 'e9f9d011-0ef4-4d58-9851-bca45d30c70c',
     REDIRECT_URI: 'http://localhost:5173/callback',
     FHIR_BASE_URL: 'https://fhir.epic.com/interconnect-fhir-oauth/api/FHIR/R4'
 };
