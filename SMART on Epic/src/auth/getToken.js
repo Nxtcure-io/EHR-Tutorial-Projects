@@ -28,7 +28,8 @@ export async function getToken(){
             client_id: config.CLIENT_ID,
             code_verifier: localStorage.getItem("code_verifier"),
         });
-
+	console.log("url body");
+	console.log(body);
         // Make the token request
         const res = await axios.post(token_endpoint, body, {
             headers: {

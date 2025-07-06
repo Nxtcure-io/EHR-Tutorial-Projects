@@ -17,7 +17,7 @@ function CallBack() {
                     localStorage.setItem("access_token", tokenData.access_token);
                     localStorage.setItem("patient_id", tokenData.patient);
                     // Set the access_token in the config
-                    setToken(tokenData.access_token)
+                    setToken(tokenData.access_token);
                     navigate("/patient-home"); // Redirect if successful
                 }
             } catch (error) {
